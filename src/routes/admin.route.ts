@@ -1,7 +1,7 @@
     import express from 'express'
     const router = express.Router();
 
-    import userRouter from './user.route'
+    import userRouter from './admin.user.route'
     import typePayment from './type_payment.route'
     import category from './category.route'
 

@@ -6,8 +6,9 @@ const userService = new UserService()
 const router = express.Router()
 router.use(express.json())
 
-router.post('/', async (req, res) => {
-    const result = await userService.storeUser(req.body)
+
+router.get('/', async (req, res) => {
+    const result = await userService.getAllUsers()
     res.send(result)
 })
 
