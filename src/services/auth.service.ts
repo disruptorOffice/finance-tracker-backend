@@ -2,6 +2,7 @@ import { getByUsername } from "../repositories/user.repository";
 import bcrypt from 'bcrypt';
 import Jwt  from "jsonwebtoken";
 import { jwtConfig } from "../config/jwtConfig";
+import { ValidationError } from "../errors/custom.errors"
 
 export class AuthService {
   
@@ -11,12 +12,12 @@ export class AuthService {
         const user = await getByUsername(username);
 
         if (!user) {
-            return "Invalid credentials, please try again";
+            throw new ValidationError("Invalid credentials, please try again");
         }
 
-        const isMatch = await bcrypt.compare(password, user.dataValues.password);
+        const isMatch = await bcrypt.compare(password, user.dataValues.password)
         if (!isMatch) {
-            return "Invalid credentials, please try again";
+            throw new ValidationError("Invalid credentials, please try again")
         }
 
         const payload = {
@@ -26,7 +27,7 @@ export class AuthService {
         };
 
         if (!jwtConfig.secret) {
-            throw new Error("JWT secret is not defined");
+            throw new ValidationError("JWT secret is not defined")
         }
         const token = Jwt.sign(payload, jwtConfig.secret, {
             expiresIn: jwtConfig.expiresIn,

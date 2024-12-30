@@ -1,4 +1,5 @@
 import {getAll, store}  from '../repositories/type_payment.repository';
+import { ValidationError } from "../errors/custom.errors"
 export class TypePaymentService {
 
     async getAllPayments() {
@@ -11,7 +12,7 @@ export class TypePaymentService {
 
     async storeTypePayment(data) {
       if((!data.name)){
-        return 'Please fill all the fields';
+        throw new ValidationError('Please fill all the fields');
       }
 
       try {

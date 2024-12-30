@@ -1,4 +1,5 @@
 import {getAll, store}  from '../repositories/category.repository';
+import { ValidationError } from "../errors/custom.errors"
 
 export class CategoryService {
 
@@ -12,7 +13,7 @@ export class CategoryService {
 
     async storeCategory(data) {
       if((!data.name)){
-        return 'Please fill all the fields';
+        throw new ValidationError('Please fill all the fields');
       }
 
       try {
