@@ -1,6 +1,6 @@
 import {getAll, getByUsername, store}  from '../repositories/user.repository';
 import {getByName}  from '../repositories/role.repository';
-import {Role} from '../database/database_define';
+import bcrypt from 'bcrypt';
 export class UserService {
 
     async getAllUsers() {
@@ -26,8 +26,13 @@ export class UserService {
     
       const role = await getByName("user");
       userData.role_id = role[0].dataValues.id;
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+      userData.password = hashedPassword;
       try {
-        return await store(userData);
+        const newUser = await store(userData)
+        newUser.dataValues.password = undefined
+        return newUser
       } catch (error) {
         console.log(error);
       }
