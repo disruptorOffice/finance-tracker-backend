@@ -12,4 +12,9 @@ router.get('/', async (req, res) => {
     res.send(result)
 })
 
+router.post('/', async (req, res) => {
+    const result = await userService.storeUser(req.body)
+    res.send(result)
+})
+
 export default router
