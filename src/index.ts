@@ -1,11 +1,14 @@
 import express, {Express} from "express";
-
+import { authenticateJWT } from "./middlewares/authMiddleware";
 import { routes } from './routes/app'
 import { syncDatabase} from './database/database_define'
 
 const app: Express = express();
 
 
+app.use(express.json())
+
+app.use(authenticateJWT)
 
 routes(app)
 
