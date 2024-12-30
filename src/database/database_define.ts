@@ -144,3 +144,5 @@ export const syncDatabase = async () => {
     await sequelize.sync()
     console.log('Database synchronized')
 }
+
+export {Role, User, Category, TypePayment, FinanceRecord}
