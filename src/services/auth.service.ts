@@ -33,7 +33,7 @@ export class AuthService {
             expiresIn: jwtConfig.expiresIn,
           });
 
-        return token;
+        return {"token": token};
 
     }
 }
