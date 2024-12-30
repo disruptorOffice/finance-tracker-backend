@@ -2,6 +2,7 @@
     const router = express.Router();
 
     import userRouter from './user.route'
+    import typePayment from './type_payment.route'
 
 // Middleware para verificar si el usuario es admin
 // function isAdmin(req, res, next) {
@@ -17,5 +18,6 @@
 
 
 router.use('/users', userRouter);
+router.use('/type_payments', typePayment);
 
 export default router
