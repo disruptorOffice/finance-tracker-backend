@@ -8,7 +8,7 @@ router.use(express.json())
 
 
 router.get('/', async (req, res) => {
-    const result = await userService.getUsers()
+    const result = await userService.getAllUsers()
     res.send(result)
 })
 
