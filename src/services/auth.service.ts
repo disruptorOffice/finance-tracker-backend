@@ -21,9 +21,9 @@ export class AuthService {
         }
 
         const payload = {
-            id: user.dataValues.id,
+            user_id: user.dataValues.id,
             username: user.dataValues.username,
-            role: user.dataValues.role_id,
+            role_id: user.dataValues.role_id,
         };
 
         if (!jwtConfig.secret) {
