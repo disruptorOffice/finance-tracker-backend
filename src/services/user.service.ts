@@ -1,7 +1,8 @@
 import {getAll, getByUsername, store}  from '../repositories/user.repository';
+import { getAllByUserId, getOneByUserId }  from '../repositories/finance.repository';
 import {getByName}  from '../repositories/role.repository';
 import bcrypt from 'bcrypt';
-import { ValidationError } from "../errors/custom.errors";
+import { ValidationError, NotFoundError } from "../errors/custom.errors";
 export class UserService {
 
     async getAllUsers() {
@@ -48,4 +49,33 @@ export class UserService {
       }
       
     }
+
+    async retrieveOneFinance(userId, financeId, payload) {
+      if(userId != payload.user_id){
+        throw new NotFoundError("resource not found");
+      }
+
+      const finance = await getOneByUserId(userId, financeId);
+
+      if(!finance) {
+        throw new NotFoundError("resource not found");
+      }
+      
+      const hisTypePayment = await finance.getTypePayment();
+      const hisCategory = await finance.getCategory();
+
+      
+
+      return {
+        id: finance.dataValues.id,
+        amount: finance.dataValues.amount,
+        description: finance.dataValues.concept ,
+        date: finance.dataValues.createdAt,
+        type_amount: finance.dataValues.type_amount,
+        type_payment: hisTypePayment.dataValues.name,
+        category: hisCategory.dataValues.name
+      };
+      
+    }
+
 }
