@@ -78,4 +78,35 @@ export class UserService {
       
     }
 
+    async retrieveFinances(userId, payload) {
+      if(userId != payload.user_id){
+        throw new NotFoundError("resource not found");
+      }
+
+      const finances = await getAllByUserId(userId);
+      
+
+      let financesData: any = [];
+      
+      for (var index = 0; index < finances.length; index++) {
+        const finance = finances[index];
+        if(!finance) {
+          continue;
+        }
+        
+  
+        financesData.push( {
+          id: finance.dataValues.id,
+          amount: finance.dataValues.amount,
+          description: finance.dataValues.concept,
+          date: finance.dataValues.createdAt,
+          type_amount: finance.dataValues.type_amount,
+          type_payment: finance.TypePayment.dataValues.name,
+          category: finance.Category.dataValues.name
+        });
+      }
+     
+      return financesData;
+    }
+
 }

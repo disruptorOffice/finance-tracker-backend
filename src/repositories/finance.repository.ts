@@ -5,7 +5,7 @@ export const store = async (financeData) => {
 }
 
 export const getAllByUserId = async (userId) => {
-    return await FinanceRecord.findAll({ where: { user_id: userId } })
+    return await FinanceRecord.findAll({ where: { user_id: userId }, include: [ "TypePayment", "Category" ] })
 }
 
 export const getOneByUserId = async (userId, financeId) => {
