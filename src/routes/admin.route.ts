@@ -3,7 +3,7 @@
 
     import userRouter from './admin.user.route'
     import typePayment from './type_payment.route'
-    import category from './category.route'
+    import category from './admin.category.route'
 
 // Middleware para verificar si el usuario es admin
 // function isAdmin(req, res, next) {
