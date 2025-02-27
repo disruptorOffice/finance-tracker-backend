@@ -12,13 +12,4 @@ router.get('/', async (req, res) => {
     res.send(result)
 })
 
-router.post('/', async (req, res, next) => {
-    try {
-        const result = await paymentService.storeTypePayment(req.body)
-    res.send(result)
-    } catch (error) {
-        next(error)
-    }
-})
-
 export default router
