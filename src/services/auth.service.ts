@@ -33,7 +33,46 @@ export class AuthService {
             expiresIn: jwtConfig.expiresIn,
           });
 
-        return {"token": token, "userId": user.dataValues.id};
+          const refreshToken = Jwt.sign({
+            username: user.dataValues.username,
+          }, jwtConfig.secret, {
+            expiresIn: "90d",
+            });
 
+            
+
+        return {"token": token, "userId": user.dataValues.id, "refreshToken": refreshToken};
+
+    }
+
+    async refreshToken(token: string) {
+        
+        if (!jwtConfig.secret) {
+            throw new ValidationError("JWT secret is not defined")
+        }
+        
+        return new Promise((resolve, reject) => {
+            Jwt.verify(token, jwtConfig.secret!, async (err, decoded) => {
+                if (err) {
+                    reject(new ValidationError("Invalid token"));
+                } else {
+                    try {
+                        
+                        const user = await getByUsername((decoded as any).username);
+                        const accessToken = Jwt.sign({
+                            user_id: user!.dataValues.id,
+                            username: user!.dataValues.username,
+                            role_id: user!.dataValues.role_id,
+                        }, jwtConfig.secret!, {
+                            expiresIn: jwtConfig.expiresIn
+                        });
+                        
+                        resolve({"token": accessToken});
+                    } catch (error) {
+                        reject(error);
+                    }
+                }
+            });
+        });
     }
 }

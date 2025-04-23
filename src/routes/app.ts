@@ -16,4 +16,14 @@ export const routes = (app: Application) => {
     router.use('/admin', adminRouter)
     router.use('/auth', authRouter)
     router.use('/finances', financeRouter)
+
+    app.use((err, req, res, next) => {
+        if (err.name === "UnauthorizedError") {
+          // Token inválido o expirado
+          return res.status(401).json({ message: "Token inválido o expirado" });
+        }
+      
+        // Otros errores
+        return res.status(500).json({ message: "Error interno del servidor" });
+      });
 }

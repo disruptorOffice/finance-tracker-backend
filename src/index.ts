@@ -3,11 +3,14 @@ import { authenticateJWT } from "./middlewares/authMiddleware";
 import { routes } from './routes/app'
 import { syncDatabase} from './database/database_define'
 import { errorHandler } from "./errors/error.handler"
+import cookieParser from 'cookie-parser'
 
 const app: Express = express();
 
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(authenticateJWT)
 

@@ -7,6 +7,7 @@ export const authenticateJWT = expressjwt({
 }).unless({
   path: [
     { url: "/v1/auth/login", methods: ["POST"] },
+    { url: "/v1/auth/refresh", methods: ["POST"] },
     { url: "/v1/users", methods: ["POST"] },
     { url: "/", methods: ["GET"] },
   ],
