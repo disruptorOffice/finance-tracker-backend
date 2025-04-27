@@ -24,6 +24,6 @@ export const routes = (app: Application) => {
         }
       
         // Otros errores
-        return res.status(500).json({ message: "Error interno del servidor" });
+        return res.status(err.statusCode).json({ message: err.message, stack: err.stack });
       });
 }
