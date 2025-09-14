@@ -20,19 +20,28 @@ services:
       - DB_PORT=${DB_PORT}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+    restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8
+    restart: always
     environment:
       MYSQL_DATABASE: finance_tracking
       MYSQL_PASSWORD: my-secret-pw
       MYSQL_ROOT_PASSWORD: my-secret-pw
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     ports:
       - "3312:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   db_data:
