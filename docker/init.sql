@@ -68,50 +68,50 @@ VALUES('user', '2024-12-29 19:03:41', '2024-12-29 19:03:41');
 
 INSERT INTO type_payment
 (name, createdAt, updatedAt)
-VALUES('Debit Card', '2024-12-30 02:13:48', '2024-12-30 02:13:48');
+VALUES('Tarjeta de debito', '2024-12-30 02:13:48', '2024-12-30 02:13:48');
 INSERT INTO type_payment
 (name, createdAt, updatedAt)
-VALUES('Credit Card', '2024-12-30 02:13:54', '2024-12-30 02:13:54');
+VALUES('Tarjeta de credito', '2024-12-30 02:13:54', '2024-12-30 02:13:54');
 INSERT INTO type_payment
 (name, createdAt, updatedAt)
-VALUES('Cash payment', '2024-12-30 02:14:11', '2024-12-30 02:14:11');
+VALUES('Pago al contado', '2024-12-30 02:14:11', '2024-12-30 02:14:11');
 
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Food', '2024-12-30 02:29:03', '2024-12-30 02:29:03');
+VALUES('Comida', '2024-12-30 02:29:03', '2024-12-30 02:29:03');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Food outside the home', '2024-12-30 02:29:30', '2024-12-30 02:29:30');
+VALUES('Comida fuera del hogar', '2024-12-30 02:29:30', '2024-12-30 02:29:30');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Water', '2024-12-30 02:29:36', '2024-12-30 02:29:36');
+VALUES('Agua', '2024-12-30 02:29:36', '2024-12-30 02:29:36');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Electricity', '2024-12-30 02:29:42', '2024-12-30 02:29:42');
+VALUES('Electricidad', '2024-12-30 02:29:42', '2024-12-30 02:29:42');
 INSERT INTO category
 (name, createdAt, updatedAt)
 VALUES('Gas', '2024-12-30 02:29:46', '2024-12-30 02:29:46');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Clothes', '2024-12-30 02:29:50', '2024-12-30 02:29:50');
+VALUES('Ropa', '2024-12-30 02:29:50', '2024-12-30 02:29:50');
 INSERT INTO category
 (name, createdAt, updatedAt)
 VALUES('Internet', '2024-12-30 02:29:55', '2024-12-30 02:29:55');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Household cleaning supplies', '2024-12-30 02:30:03', '2024-12-30 02:30:03');
+VALUES('Artículos de limpieza', '2024-12-30 02:30:03', '2024-12-30 02:30:03');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Dentist', '2024-12-30 02:30:12', '2024-12-30 02:30:12');
+VALUES('Dentista', '2024-12-30 02:30:12', '2024-12-30 02:30:12');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Medicine', '2024-12-30 02:30:17', '2024-12-30 02:30:17');
+VALUES('Medicamentos', '2024-12-30 02:30:17', '2024-12-30 02:30:17');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Online courses', '2024-12-30 02:30:23', '2024-12-30 02:30:23');
+VALUES('Cursos en línea', '2024-12-30 02:30:23', '2024-12-30 02:30:23');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Gasoline', '2024-12-30 02:30:32', '2024-12-30 02:30:32');
+VALUES('Gasolina', '2024-12-30 02:30:32', '2024-12-30 02:30:32');
 INSERT INTO category
 (name, createdAt, updatedAt)
 VALUES('Uber', '2024-12-30 02:30:36', '2024-12-30 02:30:36');
@@ -120,34 +120,37 @@ INSERT INTO category
 VALUES('Taxi', '2024-12-30 02:30:40', '2024-12-30 02:30:40');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Taxes', '2024-12-30 02:30:45', '2024-12-30 02:30:45');
+VALUES('Impuestos', '2024-12-30 02:30:45', '2024-12-30 02:30:45');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Vehicle maintenance', '2024-12-30 02:30:49', '2024-12-30 02:30:49');
+VALUES('Mantenimiento del vehículo', '2024-12-30 02:30:49', '2024-12-30 02:30:49');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Public transportation', '2024-12-30 02:30:57', '2024-12-30 02:30:57');
+VALUES('Transporte público', '2024-12-30 02:30:57', '2024-12-30 02:30:57');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Minutes and internet', '2024-12-30 02:31:25', '2024-12-30 02:31:25');
+VALUES('Minutos e internet', '2024-12-30 02:31:25', '2024-12-30 02:31:25');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Alcoholic beverages', '2024-12-30 02:31:35', '2024-12-30 02:31:35');
+VALUES('Bebidas alcohólicas', '2024-12-30 02:31:35', '2024-12-30 02:31:35');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Gifts', '2024-12-30 02:31:41', '2024-12-30 02:31:41');
+VALUES('Regalos', '2024-12-30 02:31:41', '2024-12-30 02:31:41');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Pets', '2024-12-30 02:31:45', '2024-12-30 02:31:45');
+VALUES('Mascotas', '2024-12-30 02:31:45', '2024-12-30 02:31:45');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Daily', '2024-12-30 02:31:49', '2024-12-30 02:31:49');
+VALUES('Diarios', '2024-12-30 02:31:49', '2024-12-30 02:31:49');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Monthly expense', '2024-12-30 02:31:55', '2024-12-30 02:31:55');
+VALUES('Gastos mensuales', '2024-12-30 02:31:55', '2024-12-30 02:31:55');
 INSERT INTO category
 (name, createdAt, updatedAt)
-VALUES('Others', '2024-12-30 02:32:00', '2024-12-30 02:32:00');
+VALUES('Otros', '2024-12-30 02:32:00', '2024-12-30 02:32:00');
+INSERT INTO category
+(name, createdAt, updatedAt)
+VALUES('Veterinario', '2024-12-30 02:32:00', '2024-12-30 02:32:00');
 
 INSERT INTO `user`
 (first_name, last_name, username, password, role_id, createdAt, updatedAt)
