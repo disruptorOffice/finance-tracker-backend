@@ -41,7 +41,13 @@ export class AuthService {
 
             
 
-        return {"token": token, "userId": user.dataValues.id, "refreshToken": refreshToken};
+        return {"token": token,
+             "userId": user.dataValues.id,
+             "first_name": user.dataValues.first_name,
+             "last_name": user.dataValues.last_name,
+             "username": user.dataValues.username,
+             "refreshToken": refreshToken
+            };
 
     }
 

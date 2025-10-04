@@ -154,7 +154,11 @@ VALUES('Veterinario', '2024-12-30 02:32:00', '2024-12-30 02:32:00');
 
 INSERT INTO `user`
 (first_name, last_name, username, password, role_id, createdAt, updatedAt)
-VALUES('volt', 'velter', 'admin', '$2a$10$r0Y9G3x3h3QWCM6tzn1qEeZNmfNYDirjz3Wf.GIIUKlREKkIBg796', 1, '2025-01-25 05:55:20', '2025-01-25 05:55:20');
+VALUES('volt', 'velter', 'admin', '$2a$10$quUAATBl/aZFsZrf9PHC8ehEGdwsGGUdiKSlU8gHfQPE3xh6YPQS6', 1, '2025-01-25 05:55:20', '2025-01-25 05:55:20');
 INSERT INTO `user`
 (first_name, last_name, username, password, role_id, createdAt, updatedAt)
 VALUES('victus', 'garlic', 'manager', '$2a$10$8Qxh0T6kPw6VZyOGv33X.OxDOvvIZxRhR0ok9tFLSI.6d/I/1Co1q', 2, '2025-02-22 21:49:38', '2025-02-22 21:49:38');
+
+INSERT INTO `user`
+(first_name, last_name, username, password, role_id, createdAt, updatedAt)
+VALUES('test', 'user', 'user.test', '$2a$10$0ZveeqMcd0CKjuv1jsfUMu9CtlbDOq4E53KYy4Yz31lRiZeB.xHWW', 3, '2025-02-22 21:49:38', '2025-02-22 21:49:38');
