@@ -16,7 +16,7 @@ router.post('/login', async (req, res, next) => {
             secure: true,
             maxAge: 24 * 60 * 60 * 1000
         });
-        res.send({token: result.token, userId: result.userId})
+        res.send(result)
     } catch(error) {
         next(error)
     }
