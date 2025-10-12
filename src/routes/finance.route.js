@@ -16,4 +16,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.get("/", async (req, res, next) => {
+  try {
+    const payload = req.auth; // `req.auth` contiene los datos del token decodificado
+    const result = await financeService.adjustedFinances();
+    res.send(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
