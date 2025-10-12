@@ -123,6 +123,10 @@ const FinanceRecord = sequelize.define(
         type_payment_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false
+        },
+        date_record: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
         }
     }
 )

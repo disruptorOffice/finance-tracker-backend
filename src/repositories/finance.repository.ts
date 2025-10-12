@@ -11,3 +11,7 @@ export const getAllByUserId = async (userId) => {
 export const getOneByUserId = async (userId, financeId) => {
     return await FinanceRecord.findOne({ where: { user_id: userId, id: financeId } })
 }
+
+export const getAll = async () => {
+    return await FinanceRecord.findAll()
+}
