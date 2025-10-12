@@ -21,7 +21,7 @@ export class FinanceService {
             financeData.concept = "";
         }
 
-        let recordDate = null
+        let recordDate = ""
         if (financeData.date_record) {
             recordDate = financeData.date_record
         } else {
