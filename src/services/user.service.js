@@ -68,6 +68,16 @@ export class UserService {
       throw new NotFoundError("resource not found");
     }
 
+    var createdAt = new Date(finance.dataValues.createdAt);
+    const year = createdAt.getFullYear();
+    const month = String(createdAt.getMonth() + 1).padStart(2, "0");
+    const day = String(createdAt.getDate()).padStart(2, "0");
+    const hours = String(createdAt.getHours()).padStart(2, "0");
+    const minutes = String(createdAt.getMinutes()).padStart(2, "0");
+    const seconds = String(createdAt.getSeconds()).padStart(2, "0");
+
+    const formatted = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
     const hisTypePayment = await finance.getTypePayment();
     const hisCategory = await finance.getCategory();
 
@@ -75,10 +85,11 @@ export class UserService {
       id: finance.dataValues.id,
       amount: finance.dataValues.amount,
       description: finance.dataValues.concept,
-      date: finance.dataValues.createdAt,
+      created_date: formatted,
       type_amount: finance.dataValues.type_amount,
       type_payment: hisTypePayment.dataValues.name,
       category: hisCategory.dataValues.name,
+      date_record: finance.dataValues.date_record,
     };
   }
 
@@ -97,14 +108,25 @@ export class UserService {
         continue;
       }
 
+      var createdAt = new Date(finance.dataValues.createdAt);
+      const year = createdAt.getFullYear();
+      const month = String(createdAt.getMonth() + 1).padStart(2, "0");
+      const day = String(createdAt.getDate()).padStart(2, "0");
+      const hours = String(createdAt.getHours()).padStart(2, "0");
+      const minutes = String(createdAt.getMinutes()).padStart(2, "0");
+      const seconds = String(createdAt.getSeconds()).padStart(2, "0");
+
+      const formatted = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
       financesData.push({
         id: finance.dataValues.id,
         amount: finance.dataValues.amount,
         description: finance.dataValues.concept,
-        date: finance.dataValues.createdAt,
+        created_date: formatted,
         type_amount: finance.dataValues.type_amount,
         type_payment: finance.TypePayment.dataValues.name,
         category: finance.Category.dataValues.name,
+        date_record: finance.dataValues.date_record,
       });
     }
 
