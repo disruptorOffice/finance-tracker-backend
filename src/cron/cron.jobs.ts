@@ -14,15 +14,16 @@ cron.schedule('0 15 * * *', async () => {
     // Buscar pagos programados para el día actual
     const paymentsToday = await scheduledService.findPaymentsToday(day);
     for (const payment of paymentsToday) {
+      const p = payment.get({ plain: true });
       await financeService.storeFinance({
-        amount: payment.amount,
-        concept: payment.concept,
+        amount: p.amount,
+        concept: p.concept,
         type_amount: 'expense',
-        user_id: payment.user_id,
-        category_id: payment.category_id,
-        type_payment_id: payment.type_payment_id,
+        user_id: p.user_id,
+        category_id: p.category_id,
+        type_payment_id: p.type_payment_id,
         date_record: new Date().toISOString().slice(0, 19).replace('T', ' ')
-      }, { user_id: payment.user_id });
+      }, { user_id: p.user_id });
     }
     console.log(`[CRON] Pagos programados procesados para el día ${day}`);
   } catch (error) {
