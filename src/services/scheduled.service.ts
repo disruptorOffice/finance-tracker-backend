@@ -51,4 +51,41 @@ export class ScheduledService {
             }
         });
     }
+
+    // Obtiene todos los pagos programados de un usuario con detalles extendidos
+    async getAllByUserId(userId) {
+        const { ScheduledPayment, Category, TypePayment, PaymentFrequency } = await import('../database/database_define');
+        const payments = await ScheduledPayment.findAll({
+            where: { user_id: userId },
+            include: [
+                { model: Category, attributes: ['name'] },
+                { model: TypePayment, attributes: ['name'] },
+                { model: PaymentFrequency, attributes: ['frequency'] }
+            ]
+        });
+        // Formatear la respuesta según lo solicitado
+        return payments.map(payment => {
+            const p = payment.get({ plain: true });
+            return {
+                id: p.id,
+                concept: p.concept,
+                amount: p.amount,
+                category_name: p.Category?.name || null,
+                type_payment_name: p.TypePayment?.name || null,
+                billing_date: p.billing_day,
+                frequency_name: p.PaymentFrequency?.frequency || null
+            };
+        });
+    }
+
+    
+    // Elimina un pago programado por su ID
+    async deleteById(id) {
+        const { ScheduledPayment } = await import('../database/database_define');
+        const deleted = await ScheduledPayment.destroy({ where: { id } });
+        if (deleted === 0) {
+            throw new ValidationError('Scheduled payment not found');
+        }
+        return { message: 'Scheduled payment deleted successfully' };
+    }
 }
