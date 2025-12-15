@@ -57,6 +57,66 @@ const User = sequelize.define(
     }
 )
 
+const PaymentFrequency = sequelize.define(
+    'PaymentFrequency',
+    {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        frequency: {
+            type: DataTypes.STRING(30),
+            allowNull: false
+        }
+    },
+    {
+        tableName: 'payment_frequency'
+    }
+)
+
+const ScheduledPayment = sequelize.define(
+    'ScheduledPayment',
+    {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        concept: {
+            type: DataTypes.STRING(100),
+            allowNull: false
+        },
+        frequency_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        amount: {
+            type: DataTypes.DECIMAL(15, 2),
+            allowNull: false
+        },
+        category_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        type_payment_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        billing_day: {
+            type: DataTypes.STRING(20),
+            allowNull: false
+        }
+    },
+    {
+        tableName: 'scheduled_payments'
+    }
+)
+
 const Category = sequelize.define(
     'Category',
     {
@@ -144,9 +204,22 @@ FinanceRecord.belongsTo(Category, {foreignKey: 'category_id'})
 TypePayment.hasMany(FinanceRecord, {foreignKey: 'type_payment_id'})
 FinanceRecord.belongsTo(TypePayment, {foreignKey: 'type_payment_id'})
 
+// Relaciones para ScheduledPayment
+PaymentFrequency.hasMany(ScheduledPayment, { foreignKey: 'frequency_id' })
+ScheduledPayment.belongsTo(PaymentFrequency, { foreignKey: 'frequency_id' })
+
+Category.hasMany(ScheduledPayment, { foreignKey: 'category_id' })
+ScheduledPayment.belongsTo(Category, { foreignKey: 'category_id' })
+
+TypePayment.hasMany(ScheduledPayment, { foreignKey: 'type_payment_id' })
+ScheduledPayment.belongsTo(TypePayment, { foreignKey: 'type_payment_id' })
+
+User.hasMany(ScheduledPayment, { foreignKey: 'user_id' })
+ScheduledPayment.belongsTo(User, { foreignKey: 'user_id' })
+
 export const syncDatabase = async () => {
     await sequelize.sync()
     console.log('Database synchronized')
 }
 
-export {Role, User, Category, TypePayment, FinanceRecord}
+export {Role, User, Category, TypePayment, FinanceRecord, PaymentFrequency, ScheduledPayment}

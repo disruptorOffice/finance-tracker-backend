@@ -6,6 +6,7 @@ import authRouter from './auth.route'
 import financeRouter from './finance.route'
 import categoryRouter from './category.route'
 import typePayment from './type_payment.route'
+import scheduledRouter from './scheduled.route'
 
 export const routes = (app: Application) => {
     const router = express.Router()
@@ -16,6 +17,7 @@ export const routes = (app: Application) => {
     router.use('/admin', adminRouter)
     router.use('/auth', authRouter)
     router.use('/finances', financeRouter)
+    router.use('/scheduled', scheduledRouter)
 
     app.use((err, req, res, next) => {
         if (err.name === "UnauthorizedError") {
