@@ -12,7 +12,7 @@ cron.schedule('0 15 * * *', async () => {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
     // Buscar pagos programados para el día actual
-    const paymentsToday = await scheduledService.findPaymentsToday(day);
+    const paymentsToday = await scheduledService.findMonthlyPaymentsToday(day);
     for (const payment of paymentsToday) {
       const p = payment.get({ plain: true });
       await financeService.storeFinance({
