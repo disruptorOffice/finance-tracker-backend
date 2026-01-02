@@ -52,6 +52,20 @@ export class ScheduledService {
         });
     }
 
+    // Obtiene todos los pagos programados cuyo billing_day coincide con el día actual y sean de tipo mensual
+    async findMonthlyPaymentsToday(day) {
+        const { ScheduledPayment, PaymentFrequency } = await import('../database/database_define');
+        return await ScheduledPayment.findAll({
+            where: {
+                billing_day: day
+            },
+            include: [{
+                model: PaymentFrequency,
+                where: { frequency: 'Mensual' }
+            }]
+        });
+    }
+
     // Obtiene todos los pagos programados de un usuario con detalles extendidos
     async getAllByUserId(userId) {
         const { ScheduledPayment, Category, TypePayment, PaymentFrequency } = await import('../database/database_define');
